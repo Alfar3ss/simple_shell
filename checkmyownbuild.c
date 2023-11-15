@@ -30,7 +30,6 @@ void(*checkmyownbuild(char **arv))(char **arv)
 		if (_strcmp(arv[0], nour[i].name) == 0)
 			return (nour[i].func);
 	}
-	/*return null*/
 	return (NULL);
 	
 }
