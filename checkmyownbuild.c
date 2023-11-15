@@ -19,7 +19,11 @@ void(*checkmyownbuild(char **arv))(char **arv)
 {
 	int i;
 	ownbuild nour[] = {
-		{"exit", sortu},{"setenv", _setenv},{"unsetenv", _unsetenv},{"env", env},{NULL, NULL}
+		{"exit", sortu},
+		{"setenv", _setenv},
+		{"unsetenv", _unsetenv},
+		{"env", env},
+		{NULL, NULL}
 	};
 	for (i = 0; nour[i].name; i++)
 	{
