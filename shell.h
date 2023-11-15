@@ -16,9 +16,9 @@ int _putchar(char c);
 void _puts(char *str);
 int _strlen(char *s);
 char *_strdup(char *str);
-char *link_all(char *name, char *sep, char *value);
+char *concat_all(char *name, char *sep, char *value);
 
-char **spiratstr(char *str, const char *delim);
+char **splitstring(char *str, const char *delim);
 void execute(char **argv);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 
@@ -26,54 +26,42 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 extern char **environ;
 
 /**
- * struct path_list - Linked list containing PATH dirs
+ * struct list_path - Linked list containing PATH directories
  * @dir: directory in path
- * @p: *p to next node
+ * @p: pointer to next node
  */
-typedef struct path_list
+typedef struct list_path
 {
 	char *dir;
-	struct path_list *p;
-} path_list;
+	struct list_path *p;
+} list_path;
 
 
 char *_getenv(const char *name);
-/*path list*/
-path_list *add_node_end(path_list **head, char *str);
-path_list *linkpath(char *path);
-/*file name*/
-char *_which(char *filename, path_list *head);
+list_path *add_node_end(list_path **head, char *str);
+list_path *linkpath(char *path);
+char *_which(char *filename, list_path *head);
 
 /**
- * minebuild is p of func
- ***********************
- *
- * @name: build-in 
- * *********************
- * 
- * @func: run  build-in 
- * 
+ * struct mybuild - pointer to function with corresponding buildin command
+ * @name: buildin command
+ * @func: execute the buildin command
  */
-typedef struct minebuild
+typedef struct mybuild
 {
 	char *name;
 	void (*func)(char **);
-} minebuild;
+} mybuild;
 
-void(*confirmbuild(char **arv))(char **arv);
-/*atoi*/
-int my_atoi(char *s);
-/*exit*/
-void sortu(char **arv);
-/*env*/
-void theenv(char **arv);
-/*set the env*/
-void my_settheenv(char **arv);
-/*unset the env*/
-void my_unsettheenv(char **arv);
+void(*checkbuild(char **arv))(char **arv);
+int _atoi(char *s);
+void exitt(char **arv);
+void env(char **arv);
+void _setenv(char **arv);
+void _unsetenv(char **arv);
 
-void my_free_arv(char **arv);
-void clean_list(path_list *head);
+void freearv(char **arv);
+void free_list(list_path *head);
 
 
 #endif
